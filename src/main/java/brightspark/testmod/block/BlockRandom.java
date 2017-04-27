@@ -19,6 +19,7 @@ public class BlockRandom extends TMBlock
     /**
      * Called after the block is set in the Chunk data, but before the Tile Entity is set
      */
+    @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
         Block randBlock = Block.REGISTRY.getRandomObject(rand);
