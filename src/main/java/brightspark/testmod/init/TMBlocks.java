@@ -1,6 +1,7 @@
 package brightspark.testmod.init;
 
 import brightspark.testmod.block.BlockMulti;
+import brightspark.testmod.block.BlockRandom;
 import brightspark.testmod.tileentity.TileMutli;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -17,6 +18,7 @@ public class TMBlocks
     public static Map<String, ItemBlock> ITEM_BLOCKS = new HashMap<String, ItemBlock>();
 
     public static Block blockMulti;
+    public static Block blockRandom;
 
     private static void regBlock(Block block)
     {
@@ -35,6 +37,7 @@ public class TMBlocks
         if(!BLOCKS.isEmpty()) return;
 
         regBlock(blockMulti = new BlockMulti());
+        regBlock(blockRandom = new BlockRandom());
     }
 
     public static void initTileEntities()
