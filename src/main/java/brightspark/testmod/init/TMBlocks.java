@@ -1,10 +1,12 @@
 package brightspark.testmod.init;
 
 import brightspark.testmod.block.BlockMulti;
+import brightspark.testmod.block.BlockNumbered;
 import brightspark.testmod.block.BlockRandom;
 import brightspark.testmod.tileentity.TileMutli;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -19,11 +21,17 @@ public class TMBlocks
 
     public static Block blockMulti;
     public static Block blockRandom;
+    public static Block blockNumbered;
 
     private static void regBlock(Block block)
     {
+        regBlock(block, new ItemBlock(block));
+    }
+
+    private static void regBlock(Block block, ItemBlock itemBlock)
+    {
         BLOCKS.put(block.getRegistryName().getResourcePath().toLowerCase(), block);
-        ITEM_BLOCKS.put(block.getRegistryName().getResourcePath().toLowerCase(), (ItemBlock) new ItemBlock(block).setRegistryName(block.getRegistryName()));
+        ITEM_BLOCKS.put(block.getRegistryName().getResourcePath().toLowerCase(), (ItemBlock) itemBlock.setRegistryName(block.getRegistryName()));
     }
 
     private static void regTE(Class<? extends TileEntity> teClass, Block block)
@@ -38,6 +46,7 @@ public class TMBlocks
 
         regBlock(blockMulti = new BlockMulti());
         regBlock(blockRandom = new BlockRandom());
+        regBlock(blockNumbered = new BlockNumbered(), new ItemMultiTexture(blockNumbered, blockNumbered, BlockNumbered.EnumNumber.names));
     }
 
     public static void initTileEntities()

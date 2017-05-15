@@ -1,0 +1,55 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all"
+    },
+    "variants": {
+        "number": {
+            "n1": {
+                "textures": {
+                    "all": "testmod:blocks/number1"
+                }
+            },
+            "n2": {
+                "textures": {
+                    "all": "testmod:blocks/number2"
+                }
+            },
+            "n3": {
+                "textures": {
+                    "all": "testmod:blocks/number3"
+                }
+            },
+            "n4": {
+                "textures": {
+                    "all": "testmod:blocks/number4"
+                }
+            },
+            "n5": {
+                "textures": {
+                    "all": "testmod:blocks/number5"
+                }
+            },
+            "n6": {
+                "textures": {
+                    "all": "testmod:blocks/number6"
+                }
+            },
+            "n7": {
+                "textures": {
+                    "all": "testmod:blocks/number7"
+                }
+            },
+            "n8": {
+                "textures": {
+                    "all": "testmod:blocks/number8"
+                }
+            },
+            "n9": {
+                "textures": {
+                    "all": "testmod:blocks/number9"
+                }
+            }
+        }
+    }
+}
