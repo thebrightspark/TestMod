@@ -37,13 +37,15 @@ public class TestMod
     {
         //Initialize item, blocks, textures/models and configs here
 
+        TMBlocks.initTileEntities();
+        if(event.getSide() == Side.CLIENT) TMBlocks.initTESRs();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        //Initialize GUIs, tile entities, recipies, event handlers here
-        TMBlocks.initTileEntities();
+        //Initialize GUIs, recipies, event handlers here
+
     }
 
     @Mod.EventHandler
