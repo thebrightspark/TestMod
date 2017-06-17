@@ -1,5 +1,6 @@
 package brightspark.testmod.init;
 
+import brightspark.testmod.item.ItemUseExample;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -20,6 +21,6 @@ public class TMItems
         //Make sure we only register once
         if(!ITEMS.isEmpty()) return;
 
-
+        regItem(new ItemUseExample());
     }
 }
