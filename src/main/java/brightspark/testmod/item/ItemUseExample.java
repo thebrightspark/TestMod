@@ -1,22 +1,18 @@
 package brightspark.testmod.item;
 
-import brightspark.testmod.TestMod;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class ItemUseExample extends Item
+public class ItemUseExample extends TMItem
 {
     public ItemUseExample()
     {
-        setUnlocalizedName("useExample");
-        setRegistryName("useExample");
-        setCreativeTab(TestMod.CREATIVE_TAB);
+        super("useExample");
         setMaxStackSize(1);
     }
 
@@ -48,7 +44,7 @@ public class ItemUseExample extends Item
 
     /**
      * Called each tick while using an item
-     * This is where we'll actually handle shooting the gun
+     * This is where we'll actually handle activating the item
      */
     @Override
     public void onUsingTick(ItemStack stack, EntityLivingBase player, int count)
