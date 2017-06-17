@@ -13,7 +13,7 @@ public class BlockRandom extends TMBlock
 
     public BlockRandom()
     {
-        super("blockRandom");
+        super("blockrandom");
     }
 
     /**

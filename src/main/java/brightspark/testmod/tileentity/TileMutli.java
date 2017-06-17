@@ -21,12 +21,12 @@ public class TileMutli extends TileEntity implements ITickable
     public void update()
     {
         //Check once per second
-        if(worldObj.getTotalWorldTime()%20 == 0 && isFormed && !checkStructure())
+        if(world.getTotalWorldTime()%20 == 0 && isFormed && !checkStructure())
         {
             isFormed = false;
             LogHelper.info("Structure broken!");
-            if(!worldObj.isRemote)
-                worldObj.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1f, 1f);
+            if(!world.isRemote)
+                world.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1f, 1f);
         }
     }
 
@@ -53,7 +53,7 @@ public class TileMutli extends TileEntity implements ITickable
                     //Don't need to check this block!
                     if(x == pos.getX() && y == pos.getY() && z == pos.getZ())
                         continue;
-                    IBlockState state = worldObj.getBlockState(new BlockPos(x, y, z));
+                    IBlockState state = world.getBlockState(new BlockPos(x, y, z));
                     Block block = state.getBlock();
                     //Middle block must be air!
                     if(x == pos.getX() && y == pos.getY() + 1 && z == pos.getZ())

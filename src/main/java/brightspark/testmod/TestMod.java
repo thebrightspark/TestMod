@@ -3,7 +3,7 @@ package brightspark.testmod;
 import brightspark.testmod.init.TMBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -23,9 +23,9 @@ public class TestMod
     {
         @Override
         @SideOnly(Side.CLIENT)
-        public Item getTabIconItem()
+        public ItemStack getTabIconItem()
         {
-            return Items.GOLDEN_APPLE;
+            return new ItemStack(Items.GOLDEN_APPLE);
         }
     };
 

@@ -8,7 +8,7 @@ public class BlockRenderTest extends TMBlockContainer
 {
     public BlockRenderTest()
     {
-        super("renderTest");
+        super("rendertest");
     }
 
     @Override

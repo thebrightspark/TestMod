@@ -36,14 +36,14 @@ public class RenderHandler
         ParticleRenderer.renderParticles(event.getPartialTicks());
         GlStateManager.popMatrix();
 
-        List<TileEntity> teList = mc.theWorld.loadedTileEntityList;
+        List<TileEntity> teList = mc.world.loadedTileEntityList;
         GlStateManager.pushMatrix();
         for(TileEntity te : teList)
         {
             TileEntitySpecialRenderer tesr = TileEntityRendererDispatcher.instance.getSpecialRenderer(te);
             if(tesr instanceof IRenderLater)
             {
-                EntityPlayerSP player = mc.thePlayer;
+                EntityPlayerSP player = mc.player;
                 float partialTicks = event.getPartialTicks();
                 Vec3d tePos = new Vec3d(te.getPos().getX(), te.getPos().getY(), te.getPos().getZ());
                 Vec3d pos = new Vec3d(

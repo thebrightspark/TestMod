@@ -12,7 +12,7 @@ public class ItemUseExample extends TMItem
 {
     public ItemUseExample()
     {
-        super("useExample");
+        super("useexample");
         setMaxStackSize(1);
     }
 
@@ -31,15 +31,15 @@ public class ItemUseExample extends TMItem
      * We use this to start using the item
      */
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         if(!playerIn.isSneaking())
         {
             System.out.println("Item Right Clicked! Starting use...");
             playerIn.setActiveHand(hand);
-            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, itemStackIn);
+        return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(hand));
     }
 
     /**
