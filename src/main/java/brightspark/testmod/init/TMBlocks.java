@@ -3,10 +3,7 @@ package brightspark.testmod.init;
 import brightspark.testmod.block.BlockMulti;
 import brightspark.testmod.block.BlockNumbered;
 import brightspark.testmod.block.BlockRandom;
-import brightspark.testmod.block.BlockRenderTest;
-import brightspark.testmod.tileentity.TESRRenderTest;
 import brightspark.testmod.tileentity.TileMutli;
-import brightspark.testmod.tileentity.TileRenderTest;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
@@ -58,17 +55,15 @@ public class TMBlocks
         regBlock(blockMulti = new BlockMulti());
         regBlock(blockRandom = new BlockRandom());
         regBlock(blockNumbered = new BlockNumbered(), new ItemMultiTexture(blockNumbered, blockNumbered, BlockNumbered.EnumNumber.names));
-        regBlock(blockRenderTest = new BlockRenderTest());
     }
 
     public static void initTileEntities()
     {
         regTE(TileMutli.class, blockMulti);
-        regTE(TileRenderTest.class, blockRenderTest);
     }
 
     public static void initTESRs()
     {
-        regTESR(TileRenderTest.class, new TESRRenderTest());
+
     }
 }
