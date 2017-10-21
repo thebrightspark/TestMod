@@ -13,7 +13,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 
-public class TileMutli extends TileEntity implements ITickable
+public class TileMutli extends TMTileWithNBT implements ITickable
 {
     private boolean isFormed = false;
 
@@ -82,19 +82,5 @@ public class TileMutli extends TileEntity implements ITickable
     {
         nbt.setBoolean("formed", isFormed);
         return super.writeToNBT(nbt);
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        return new SPacketUpdateTileEntity(pos, 0, nbt);
-    }
-
-    @Override
-    public void onDataPacket(net.minecraft.network.NetworkManager net, net.minecraft.network.play.server.SPacketUpdateTileEntity pkt)
-    {
-        readFromNBT(pkt.getNbtCompound());
     }
 }

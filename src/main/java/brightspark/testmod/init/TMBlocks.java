@@ -1,40 +1,54 @@
 package brightspark.testmod.init;
 
+import brightspark.testmod.block.BlockAnimated;
 import brightspark.testmod.block.BlockMulti;
 import brightspark.testmod.block.BlockNumbered;
 import brightspark.testmod.block.BlockRandom;
+import brightspark.testmod.tileentity.TileAnimated;
 import brightspark.testmod.tileentity.TileMutli;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TMBlocks
 {
     //Contains all registered blocks
-    public static Map<String, Block> BLOCKS = new HashMap<String, Block>();
-    public static Map<String, ItemBlock> ITEM_BLOCKS = new HashMap<String, ItemBlock>();
+    public static List<Block> BLOCKS;
+    public static List<ItemBlock> ITEM_BLOCKS;
 
     public static Block blockMulti;
     public static Block blockRandom;
     public static Block blockNumbered;
-    public static Block blockRenderTest;
+    public static Block blockAnimated;
 
-    private static void regBlock(Block block)
+    private static void init()
     {
-        regBlock(block, new ItemBlock(block));
+        BLOCKS = new ArrayList<>();
+        ITEM_BLOCKS = new ArrayList<>();
+
+        addBlock(blockMulti = new BlockMulti());
+        addBlock(blockRandom = new BlockRandom());
+        addBlock(blockNumbered = new BlockNumbered(), new ItemMultiTexture(blockNumbered, blockNumbered, BlockNumbered.EnumNumber.names));
+        addBlock(blockAnimated = new BlockAnimated());
     }
 
-    private static void regBlock(Block block, ItemBlock itemBlock)
+    private static void addBlock(Block block)
     {
-        BLOCKS.put(block.getRegistryName().getResourcePath().toLowerCase(), block);
-        ITEM_BLOCKS.put(block.getRegistryName().getResourcePath().toLowerCase(), (ItemBlock) itemBlock.setRegistryName(block.getRegistryName()));
+        addBlock(block, (ItemBlock) new ItemBlock(block).setRegistryName(block.getRegistryName()));
+    }
+
+    private static void addBlock(Block block, ItemBlock itemBlock)
+    {
+        BLOCKS.add(block);
+        ITEM_BLOCKS.add(itemBlock);
     }
 
     private static void regTE(Class<? extends TileEntity> teClass, Block block)
@@ -47,23 +61,32 @@ public class TMBlocks
         ClientRegistry.bindTileEntitySpecialRenderer(teClass, tesr);
     }
 
-    public static void init()
-    {
-        //Make sure we only register once
-        if(!BLOCKS.isEmpty()) return;
-
-        regBlock(blockMulti = new BlockMulti());
-        regBlock(blockRandom = new BlockRandom());
-        regBlock(blockNumbered = new BlockNumbered(), new ItemMultiTexture(blockNumbered, blockNumbered, BlockNumbered.EnumNumber.names));
-    }
-
-    public static void initTileEntities()
+    public static void regTileEntities()
     {
         regTE(TileMutli.class, blockMulti);
+        regTE(TileAnimated.class, blockAnimated);
     }
 
-    public static void initTESRs()
+    public static void regTESRs()
     {
+        regTESR(TileAnimated.class, new AnimationTESR<TileAnimated>() {});
+    }
 
+    public static ItemBlock[] getItemBlocks()
+    {
+        if(ITEM_BLOCKS == null) init();
+        return ITEM_BLOCKS.toArray(new ItemBlock[ITEM_BLOCKS.size()]);
+    }
+
+    public static Block[] getBlocks()
+    {
+        if(BLOCKS == null) init();
+        return BLOCKS.toArray(new Block[BLOCKS.size()]);
+    }
+
+    public static void voidLists()
+    {
+        BLOCKS = null;
+        ITEM_BLOCKS = null;
     }
 }

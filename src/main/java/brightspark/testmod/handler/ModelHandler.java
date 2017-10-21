@@ -18,12 +18,14 @@ public class ModelHandler
     public static void regModels(ModelRegistryEvent event)
     {
         //Register all item models
-        for(Item item : TMItems.ITEMS.values())
-            regModel(item);
-
+        TMItems.ITEMS.forEach(ModelHandler::regModel);
         //Register block models
-        for(Block block : TMBlocks.BLOCKS.values())
-            regModel(Item.getItemFromBlock(block));
+        TMBlocks.BLOCKS.forEach(ModelHandler::regModel);
+    }
+
+    private static void regModel(Block block)
+    {
+        regModel(Item.getItemFromBlock(block));
     }
 
     private static void regModel(Item item)
