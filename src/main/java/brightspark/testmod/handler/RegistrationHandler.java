@@ -19,6 +19,7 @@ public class RegistrationHandler
         //Register all items
         IForgeRegistry<Item> registry = event.getRegistry();
         registry.registerAll(TMItems.getItems());
+        registry.registerAll(TMBlocks.getItemBlocks());
     }
 
     @SubscribeEvent
