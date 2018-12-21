@@ -1,14 +1,12 @@
 package brightspark.testmod.tileentity;
 
-import brightspark.testmod.util.LogHelper;
+import brightspark.testmod.TestMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +22,7 @@ public class TileMutli extends TMTileWithNBT implements ITickable
         if(world.getTotalWorldTime()%20 == 0 && isFormed && !checkStructure())
         {
             isFormed = false;
-            LogHelper.info("Structure broken!");
+            TestMod.LOG.info("Structure broken!");
             if(!world.isRemote)
                 world.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1f, 1f);
         }

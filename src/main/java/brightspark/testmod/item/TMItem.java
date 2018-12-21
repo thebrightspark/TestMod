@@ -7,7 +7,7 @@ public class TMItem extends Item
 {
     public TMItem(String name)
     {
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(TestMod.CREATIVE_TAB);
     }

@@ -9,7 +9,7 @@ public class TMBlock extends Block
     public TMBlock(String name)
     {
         super(Material.ROCK);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(TestMod.CREATIVE_TAB);
     }

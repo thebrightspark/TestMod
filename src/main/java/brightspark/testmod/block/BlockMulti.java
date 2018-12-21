@@ -1,7 +1,7 @@
 package brightspark.testmod.block;
 
+import brightspark.testmod.TestMod;
 import brightspark.testmod.tileentity.TileMutli;
-import brightspark.testmod.util.LogHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -34,7 +34,7 @@ public class BlockMulti extends TMBlockContainer
         if(te != null && te.formStructure())
         {
             //Play sound when forms
-            LogHelper.info("Formed!");
+            TestMod.LOG.info("Formed!");
             worldIn.playSound(null, pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1f, 1f);
         }
         return true;

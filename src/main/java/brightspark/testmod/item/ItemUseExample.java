@@ -1,5 +1,6 @@
 package brightspark.testmod.item;
 
+import brightspark.testmod.TestMod;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ public class ItemUseExample extends TMItem
 {
     public ItemUseExample()
     {
-        super("useexample");
+        super("itemuseexample");
         setMaxStackSize(1);
     }
 
@@ -35,15 +36,15 @@ public class ItemUseExample extends TMItem
     {
         if(!playerIn.isSneaking())
         {
-            System.out.println("Item Right Clicked! Starting use...");
+            TestMod.LOG.info("Item Right Clicked! Starting use...");
             playerIn.setActiveHand(hand);
-            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
+            return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(hand));
+        return new ActionResult<>(EnumActionResult.PASS, playerIn.getHeldItem(hand));
     }
 
     /**
-     * Called each tick while using an item
+     * Called each tick while using the item
      * This is where we'll actually handle activating the item
      */
     @Override
@@ -52,7 +53,17 @@ public class ItemUseExample extends TMItem
         //I'm going to only make this "activate" every second
         if(count % 20 == 0)
         {
-            System.out.println("Activated!");
+            TestMod.LOG.info("Activated!");
         }
+    }
+
+    /**
+     * Called when finished using the item
+     */
+    @Override
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+    {
+        TestMod.LOG.info("Finished!");
+        return stack;
     }
 }

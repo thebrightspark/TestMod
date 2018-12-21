@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = TestMod.MOD_ID, name = TestMod.MOD_NAME, version = TestMod.VERSION)
 public class TestMod
@@ -27,8 +28,7 @@ public class TestMod
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID)
     {
         @Override
-        @SideOnly(Side.CLIENT)
-        public ItemStack getTabIconItem()
+        public ItemStack createIcon()
         {
             return new ItemStack(Items.GOLDEN_APPLE);
         }
@@ -41,11 +41,12 @@ public class TestMod
     public static CommonProxy proxy;
 
     public static SimpleNetworkWrapper NETWORK;
+    public static Logger LOG;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        //Initialize item, blocks, textures/models and configs here
+        LOG = event.getModLog();
         proxy.preInit();
 
         NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
@@ -56,7 +57,6 @@ public class TestMod
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        //Initialize GUIs, recipies, event handlers here
         proxy.init();
     }
 

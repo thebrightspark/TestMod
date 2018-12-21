@@ -1,16 +1,16 @@
 package brightspark.testmod.handler;
 
+import brightspark.testmod.TestMod;
 import brightspark.testmod.init.TMBlocks;
 import brightspark.testmod.init.TMItems;
-import brightspark.testmod.item.TMItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = TestMod.MOD_ID)
 public class RegistrationHandler
 {
     @SubscribeEvent

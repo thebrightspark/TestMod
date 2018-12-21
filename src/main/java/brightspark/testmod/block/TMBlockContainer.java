@@ -11,7 +11,7 @@ public abstract class TMBlockContainer extends BlockContainer
     protected TMBlockContainer(String name)
     {
         super(Material.ROCK);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(TestMod.CREATIVE_TAB);
     }
