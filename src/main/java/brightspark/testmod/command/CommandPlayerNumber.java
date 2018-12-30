@@ -12,7 +12,6 @@ import net.minecraft.util.text.TextComponentString;
 
 public class CommandPlayerNumber extends CommandBase
 {
-
     @Override
     public String getName()
     {
