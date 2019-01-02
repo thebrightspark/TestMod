@@ -1,12 +1,15 @@
 package brightspark.testmod.init;
 
 import brightspark.testmod.TestMod;
+import brightspark.testmod.block.BlockCustomChest;
 import brightspark.testmod.block.BlockMulti;
 import brightspark.testmod.block.BlockNumbered;
 import brightspark.testmod.block.BlockRandom;
+import brightspark.testmod.tileentity.TileCustomChest;
 import brightspark.testmod.tileentity.TileMutli;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.tileentity.TileEntity;
@@ -21,32 +24,41 @@ public class TMBlocks
 {
     //Contains all registered blocks
     public static List<Block> BLOCKS;
-    public static List<ItemBlock> ITEM_BLOCKS;
+    public static List<Item> ITEM_BLOCKS;
 
-    public static final Block blockmulti = null;
-    public static final Block blockrandom = null;
-    public static final Block blocknumbered = null;
+    public static final Block multi = null;
+    public static final Block random = null;
+    public static final Block numbered = null;
+    public static final Block chest = null;
 
     private static void init()
     {
         BLOCKS = new ArrayList<>();
         ITEM_BLOCKS = new ArrayList<>();
 
-        addBlock(new BlockMulti());
+        Block temp = new BlockMulti();
+        addBlock(temp);
+        regTE(TileMutli.class, temp);
+
         addBlock(new BlockRandom());
-        Block temp = new BlockNumbered();
+
+        temp = new BlockNumbered();
         addBlock(temp, new ItemMultiTexture(temp, temp, BlockNumbered.EnumNumber.names));
+
+        temp = new BlockCustomChest();
+        addBlock(temp);
+        regTE(TileCustomChest.class, temp);
     }
 
     private static void addBlock(Block block)
     {
-        addBlock(block, (ItemBlock) new ItemBlock(block).setRegistryName(block.getRegistryName()));
+        addBlock(block, new ItemBlock(block));
     }
 
     private static void addBlock(Block block, ItemBlock itemBlock)
     {
         BLOCKS.add(block);
-        ITEM_BLOCKS.add(itemBlock);
+        ITEM_BLOCKS.add(itemBlock.setRegistryName(block.getRegistryName()));
     }
 
     private static void regTE(Class<? extends TileEntity> teClass, Block block)
@@ -59,17 +71,12 @@ public class TMBlocks
         ClientRegistry.bindTileEntitySpecialRenderer(teClass, tesr);
     }
 
-    public static void regTileEntities()
-    {
-        regTE(TileMutli.class, blockmulti);
-    }
-
     public static void regTESRs() {}
 
-    public static ItemBlock[] getItemBlocks()
+    public static Item[] getItemBlocks()
     {
         if(ITEM_BLOCKS == null) init();
-        return ITEM_BLOCKS.toArray(new ItemBlock[0]);
+        return ITEM_BLOCKS.toArray(new Item[0]);
     }
 
     public static Block[] getBlocks()

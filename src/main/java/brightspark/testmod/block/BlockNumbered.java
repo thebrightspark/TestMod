@@ -39,7 +39,7 @@ public class BlockNumbered extends TMBlock
 
     public BlockNumbered()
     {
-        super("blocknumbered");
+        super("numbered");
         setDefaultState(blockState.getBaseState().withProperty(NUMBER, EnumNumber.n1));
     }
 

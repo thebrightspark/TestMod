@@ -8,7 +8,7 @@ import net.minecraft.util.EnumBlockRenderType;
 
 public abstract class TMBlockContainer extends BlockContainer
 {
-    protected TMBlockContainer(String name)
+    public TMBlockContainer(String name)
     {
         super(Material.ROCK);
         setTranslationKey(name);

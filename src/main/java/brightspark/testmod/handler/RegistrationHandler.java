@@ -27,6 +27,5 @@ public class RegistrationHandler
     {
         //Register all blocks
         event.getRegistry().registerAll(TMBlocks.getBlocks());
-        TMBlocks.regTileEntities();
     }
 }

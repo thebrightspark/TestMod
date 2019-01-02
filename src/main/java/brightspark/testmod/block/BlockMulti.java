@@ -19,7 +19,7 @@ public class BlockMulti extends TMBlockContainer
 {
     public BlockMulti()
     {
-        super("blockmulti");
+        super("multi");
     }
 
     @Override

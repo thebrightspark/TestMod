@@ -1,5 +1,7 @@
 package brightspark.testmod.proxy;
 
+import brightspark.testmod.TestMod;
+import brightspark.testmod.handler.GuiHandler;
 import brightspark.testmod.init.TMBlocks;
 import brightspark.testmod.init.TMCapabilities;
 import brightspark.testmod.init.TMItems;
@@ -7,6 +9,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class CommonProxy
 {
@@ -17,7 +20,7 @@ public class CommonProxy
 
     public void init()
     {
-
+        NetworkRegistry.INSTANCE.registerGuiHandler(TestMod.instance, new GuiHandler());
     }
 
     public void postInit()
