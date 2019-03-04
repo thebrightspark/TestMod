@@ -5,6 +5,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ScreenShotHelper;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -12,8 +13,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientEventHandler
 {
     private static RayTraceResult rayTrace(World worldIn, EntityPlayer playerIn, boolean useLiquids)
@@ -67,5 +69,19 @@ public class ClientEventHandler
         Gui.drawRect(minX - margin, yMid - margin, xMid + (textWidth / 2) + margin, yMid + textHeight + margin, 0x88000000); //Colour is argb
         //Render name of block on screen
         fr.drawStringWithShadow(blockName, minX, yMid, 0xFFFFFF);
+    }
+
+    public static boolean screenshot = false;
+
+    @SubscribeEvent
+    public static void takeScreenshot(RenderGameOverlayEvent.Pre event)
+    {
+        if(!screenshot || event.getType() != RenderGameOverlayEvent.ElementType.VIGNETTE)
+            return;
+        screenshot = false;
+
+        //Take screenshot
+        Minecraft mc = Minecraft.getMinecraft();
+        mc.player.sendMessage(ScreenShotHelper.saveScreenshot(mc.gameDir, mc.displayWidth, mc.displayHeight, mc.getFramebuffer()));
     }
 }
