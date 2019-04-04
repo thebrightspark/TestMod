@@ -3,6 +3,7 @@ package brightspark.testmod.handler;
 import brightspark.testmod.TestMod;
 import brightspark.testmod.init.TMBlocks;
 import brightspark.testmod.init.TMItems;
+import brightspark.testmod.item.TMItemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -31,6 +32,15 @@ public class ModelHandler
 
     private static void regModel(Item item)
     {
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+        if(item instanceof TMItemBlock)
+        {
+            String[] subNames = ((TMItemBlock) item).getSubNames();
+            for(int i = 0; i < subNames.length; i++)
+                ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(item.getRegistryName() + "/" + subNames[i], "inventory"));
+            //Could use something this to get it to use just a single blockstate file:
+            //ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), "variant=" + meta)
+        }
+        else
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 }

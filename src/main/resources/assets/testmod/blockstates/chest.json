@@ -1,0 +1,15 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "oak_planks"
+    },
+    "variants": {
+        "facing": {
+            "north": {"model": "oak_planks"},
+            "south": {"model": "oak_planks"},
+            "east":  {"model": "oak_planks"},
+            "west":  {"model": "oak_planks"}
+        },
+        "inventory": [{}]
+    }
+}

@@ -5,13 +5,13 @@ import brightspark.testmod.block.BlockCustomChest;
 import brightspark.testmod.block.BlockMulti;
 import brightspark.testmod.block.BlockNumbered;
 import brightspark.testmod.block.BlockRandom;
+import brightspark.testmod.item.TMItemBlock;
 import brightspark.testmod.tileentity.TileCustomChest;
 import brightspark.testmod.tileentity.TileMutli;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -42,8 +42,7 @@ public class TMBlocks
 
         addBlock(new BlockRandom());
 
-        temp = new BlockNumbered();
-        addBlock(temp, new ItemMultiTexture(temp, temp, BlockNumbered.EnumNumber.names));
+        addBlock(new BlockNumbered(), BlockNumbered.EnumNumber.class);
 
         temp = new BlockCustomChest();
         addBlock(temp);
@@ -52,13 +51,16 @@ public class TMBlocks
 
     private static void addBlock(Block block)
     {
-        addBlock(block, new ItemBlock(block));
+        BLOCKS.add(block);
+        ITEM_BLOCKS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
     }
 
-    private static void addBlock(Block block, ItemBlock itemBlock)
+    private static void addBlock(Block block, Class<? extends Enum> subTypesEnum)
     {
         BLOCKS.add(block);
-        ITEM_BLOCKS.add(itemBlock.setRegistryName(block.getRegistryName()));
+        TMItemBlock itemBlock = new TMItemBlock(block, subTypesEnum);
+        itemBlock.setRegistryName(block.getRegistryName());
+        ITEM_BLOCKS.add(itemBlock);
     }
 
     private static void regTE(Class<? extends TileEntity> teClass, Block block)

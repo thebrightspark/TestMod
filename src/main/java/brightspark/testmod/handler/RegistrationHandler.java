@@ -5,6 +5,7 @@ import brightspark.testmod.init.TMBlocks;
 import brightspark.testmod.init.TMItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,7 +15,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class RegistrationHandler
 {
     @SubscribeEvent
-    public static void initItems(RegistryEvent.Register<Item> event)
+    public static void regItems(RegistryEvent.Register<Item> event)
     {
         //Register all items
         IForgeRegistry<Item> registry = event.getRegistry();
@@ -27,5 +28,11 @@ public class RegistrationHandler
     {
         //Register all blocks
         event.getRegistry().registerAll(TMBlocks.getBlocks());
+    }
+
+    //@SubscribeEvent
+    public static void regRecipes(RegistryEvent.Register<IRecipe> event)
+    {
+
     }
 }
