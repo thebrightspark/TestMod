@@ -1,5 +1,6 @@
 package brightspark.testmod.handler;
 
+import brightspark.testmod.TestMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -15,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = TestMod.MOD_ID, value = Side.CLIENT)
 public class ClientEventHandler
 {
     private static RayTraceResult rayTrace(World worldIn, EntityPlayer playerIn, boolean useLiquids)
